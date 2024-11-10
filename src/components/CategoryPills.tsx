@@ -21,25 +21,24 @@ export default function CategoryPills({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Check visibility of navigation buttons based on `translate` value and container width
   useEffect(() => {
     const containerWidth = containerRef.current?.clientWidth || 0;
     const contentWidth = containerRef.current?.scrollWidth || 0;
 
     setIsLeftVisible(translate > 0);
     setIsRightVisible(translate < contentWidth - containerWidth);
-  }, [translate, categories.length]); // Re-run when `translate` changes or `categories` updates
+  }, [translate, categories.length]); 
 
   return (
     <div className="overflow-x-hidden relative" ref={containerRef}>
       <div
         className="flex whitespace-nowrap gap-3 transition-transform w-[max-content]"
-        style={{ transform: `translateX(-${translate}px)` }} // Corrected to use `-translate` to scroll right
+        style={{ transform: `translateX(-${translate}px)` }} 
       >
         {categories.map((category) => (
           <Button
             key={category}
-            varient={selectedCategory === category ? "dark" : "default"} // Fixed `variant` spelling
+            varient={selectedCategory === category ? "dark" : "default"}
             onClick={() => onSelect(category)}
             className="py-1 px-3 rounded-lg whitespace-nowrap"
           >
